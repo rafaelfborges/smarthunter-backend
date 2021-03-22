@@ -21,6 +21,6 @@ public class Lesson {
     @NotBlank
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Activity> activities;
 }

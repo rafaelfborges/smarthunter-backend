@@ -39,6 +39,6 @@ public class Course {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate expirationDate;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Lesson> lessons;
 }
