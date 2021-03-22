@@ -3,16 +3,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.openedu</groupId>
-	<artifactId>ms-courses</artifactId>
+	<groupId>com.smarthunter</groupId>
+	<artifactId>main</artifactId>
 	<version>0.1-BETA</version>
 	<name>smarthunter</name>
-	<description>Open Edu - SmartHunter</description>
+	<description>SmartHunter</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.9.RELEASE</version>
+		<version>2.4.4</version>
 		<relativePath/>
 	</parent>
 
@@ -20,7 +20,7 @@
 		<java.version>11</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 		<org.projectlombok.version>1.18.18</org.projectlombok.version>
-		<slf4j>1.7.30</slf4j>
+		<slf4j.version>1.7.30</slf4j.version>
 	</properties>
 
 	<dependencies>
@@ -28,10 +28,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -54,18 +50,10 @@
 			</exclusions>
 		</dependency>
 
-		<!-- Spring Data JPA and MongoDB-->
+		<!-- Spring Data JPA-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-		<!-- Spring Devtools -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
 		</dependency>
 
 		<!-- Lombok -->
