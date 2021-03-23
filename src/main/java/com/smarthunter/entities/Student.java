@@ -19,8 +19,7 @@ public class Student {
     @NotBlank
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany
     private Set<CourseEnrollment> coursesEnrollment = new HashSet<>();
-
 
 }

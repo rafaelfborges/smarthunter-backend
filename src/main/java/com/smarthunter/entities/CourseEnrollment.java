@@ -12,13 +12,8 @@ import java.time.LocalDate;
 @Entity
 public class CourseEnrollment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
-    @ManyToOne
-    private Course course;
+    @EmbeddedId
+    private CourseEnrollmentId id;
 
     @CreationTimestamp
     @Column(name = "register_date")
