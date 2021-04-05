@@ -1,4 +1,4 @@
-package com.smarthunter.entities;
+package com.smarthunter.api.entities;
 
 import lombok.Data;
 
@@ -8,11 +8,11 @@ import java.io.Serializable;
 
 @Data
 @Embeddable
-public class CourseEnrollmentId implements Serializable {
-
-    @ManyToOne
-    private Course course;
+public class EnrolledCoursesId implements Serializable {
 
     @ManyToOne
     private Student student;
+
+    @ManyToOne
+    private Course course;
 }

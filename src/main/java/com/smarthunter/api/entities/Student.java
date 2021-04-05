@@ -1,4 +1,4 @@
-package com.smarthunter.entities;
+package com.smarthunter.api.entities;
 
 import lombok.Data;
 
@@ -19,7 +19,6 @@ public class Student {
     @NotBlank
     private String name;
 
-    @OneToMany
-    private Set<CourseEnrollment> coursesEnrollment = new HashSet<>();
-
+    @OneToMany(mappedBy = "id.student", fetch = FetchType.EAGER)
+    private Set<EnrolledCourses> enrolledCourses = new HashSet<>();
 }

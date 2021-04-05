@@ -1,4 +1,4 @@
-package com.smarthunter.entities;
+package com.smarthunter.api.entities;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
-package com.smarthunter.services.impl;
+package com.smarthunter.api.services.impl;
 
 
-import com.smarthunter.entities.Course;
-import com.smarthunter.repositories.CourseRepository;
+import com.smarthunter.api.entities.Course;
+import com.smarthunter.api.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CourseServiceImpl {
+public class CourseService {
 
     @Autowired
     private CourseRepository repository;

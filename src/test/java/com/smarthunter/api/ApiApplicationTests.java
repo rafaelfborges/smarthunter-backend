@@ -1,13 +1,13 @@
-package com.openedu.mscourses;
+package com.smarthunter.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsCoursesApplicationTests {
+class ApiApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

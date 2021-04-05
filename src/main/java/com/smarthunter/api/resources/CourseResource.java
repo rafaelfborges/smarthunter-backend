@@ -1,7 +1,7 @@
-package com.smarthunter.resources;
+package com.smarthunter.api.resources;
 
-import com.smarthunter.entities.Course;
-import com.smarthunter.services.impl.CourseServiceImpl;
+import com.smarthunter.api.entities.Course;
+import com.smarthunter.api.services.impl.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 public class CourseResource {
 
     @Autowired
-    private CourseServiceImpl service;
+    private CourseService service;
 
     @GetMapping
     public ResponseEntity<List<Course>> getAll() {

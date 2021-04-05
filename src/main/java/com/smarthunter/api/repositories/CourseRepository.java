@@ -1,6 +1,6 @@
-package com.smarthunter.repositories;
+package com.smarthunter.api.repositories;
 
-import com.smarthunter.entities.Course;
+import com.smarthunter.api.entities.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

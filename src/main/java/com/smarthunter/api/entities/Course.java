@@ -1,4 +1,4 @@
-package com.smarthunter.entities;
+package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

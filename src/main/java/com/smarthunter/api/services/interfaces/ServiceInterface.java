@@ -1,4 +1,4 @@
-package com.smarthunter.services.interfaces;
+package com.smarthunter.api.services.interfaces;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
