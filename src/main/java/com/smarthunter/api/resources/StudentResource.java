@@ -1,5 +1,6 @@
 package com.smarthunter.api.resources;
 
+import com.smarthunter.api.entities.EnrolledCourses;
 import com.smarthunter.api.entities.Student;
 import com.smarthunter.api.services.impl.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
