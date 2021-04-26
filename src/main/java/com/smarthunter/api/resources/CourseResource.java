@@ -2,6 +2,7 @@ package com.smarthunter.api.resources;
 
 import com.smarthunter.api.entities.Course;
 import com.smarthunter.api.services.impl.CourseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/courses")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CourseResource {
 
-    @Autowired
-    private CourseService service;
+    private final CourseService service;
 
     @GetMapping
     public ResponseEntity<List<Course>> getAll() {
