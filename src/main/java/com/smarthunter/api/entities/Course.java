@@ -1,6 +1,8 @@
 package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.smarthunter.api.dtos.CourseResponseDTO;
+import com.smarthunter.api.util.Convertible;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "courses")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Course {
+public class Course implements Convertible<CourseResponseDTO> {
 
     @Id
     @EqualsAndHashCode.Include
@@ -47,11 +49,16 @@ public class Course {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate expirationDate;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "courses_lessons",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "lesson_id")
     )
     private List<Lesson> lessons = new ArrayList<>();
+
+    @Override
+    public CourseResponseDTO convertResponse() {
+        return new CourseResponseDTO(this);
+    }
 }

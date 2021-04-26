@@ -29,7 +29,7 @@ public class Lesson {
     @NotBlank
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "lessons_activities",
             joinColumns = @JoinColumn(name = "lesson_id"),
