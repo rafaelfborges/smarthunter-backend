@@ -7,10 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -19,10 +16,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "enrolled_courses")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class EnrolledCourses {
+public class EnrolledCourse {
 
-    @EmbeddedId
-    private EnrolledCoursesId id;
+    @Id
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    private Course course;
+
+    @ManyToOne
+    private Student student;
 
     @CreationTimestamp
     @Column(name = "register_date")
