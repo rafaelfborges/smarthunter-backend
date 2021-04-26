@@ -1,6 +1,7 @@
 package com.smarthunter.api.resources;
 
-import com.smarthunter.api.entities.Course;
+import com.smarthunter.api.dtos.CourseRequestDTO;
+import com.smarthunter.api.dtos.CourseResponseDTO;
 import com.smarthunter.api.services.impl.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,36 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CourseResource {
 
-    private final CourseService service;
+    private final CourseService courseService;
 
     @GetMapping
-    public ResponseEntity<List<Course>> getAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<List<CourseResponseDTO>> findAll() {
+        return ResponseEntity.ok(courseService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CourseResponseDTO findById(@PathVariable Long id) {
+        return courseService.findById(id);
     }
 
     @PostMapping
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public Course create(@Valid @RequestBody Course course) {
-        return service.save(course);
+    public CourseResponseDTO create(@Valid @RequestBody CourseRequestDTO course) {
+        return courseService.save(course);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public CourseResponseDTO update(@PathVariable Long id, @Valid @RequestBody CourseRequestDTO course) {
+        return courseService.updateById(id, course);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remove(@PathVariable Long id) {
+        courseService.deleteById(id);
     }
 }
