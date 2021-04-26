@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/courses")
+@RequestMapping("/courses")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CourseResource {
 
@@ -29,6 +29,7 @@ public class CourseResource {
     public CourseResponseDTO findById(@PathVariable Long id) {
         return courseService.findById(id);
     }
+
 
     @PostMapping
     @ResponseBody

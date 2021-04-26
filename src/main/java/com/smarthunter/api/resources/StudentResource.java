@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/students")
+@RequestMapping("/students")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class StudentResource {
 
