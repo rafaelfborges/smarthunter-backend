@@ -1,7 +1,7 @@
 package com.smarthunter.api.resources.docs;
 
-import com.smarthunter.api.dtos.CourseRequestDTO;
-import com.smarthunter.api.dtos.CourseResponseDTO;
+import com.smarthunter.api.dtos.requests.CourseRequestDTO;
+import com.smarthunter.api.dtos.responses.CourseResponseDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 

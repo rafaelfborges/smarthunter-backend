@@ -1,7 +1,7 @@
 package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.smarthunter.api.dtos.StudentResponseDTO;
+import com.smarthunter.api.dtos.responses.StudentResponseDTO;
 import com.smarthunter.api.util.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -50,12 +50,12 @@ public class Student implements Convertible<StudentResponseDTO> {
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
 
-    public boolean newEnrolledCourse(EnrolledCourse enrolledCourse) {
-        return this.enrolledCourses.add(enrolledCourse);
+    public void newEnrolledCourse(EnrolledCourse enrolledCourse) {
+        this.enrolledCourses.add(enrolledCourse);
     }
 
     @Override
-    public StudentResponseDTO convertResponse() {
+    public StudentResponseDTO convertToDTO() {
         return new StudentResponseDTO(this);
     }
 }

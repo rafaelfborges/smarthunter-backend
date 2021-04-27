@@ -1,4 +1,4 @@
-package com.smarthunter.api.dtos;
+package com.smarthunter.api.dtos.requests;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

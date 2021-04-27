@@ -1,7 +1,7 @@
 package com.smarthunter.api.resources;
 
-import com.smarthunter.api.dtos.CourseRequestDTO;
-import com.smarthunter.api.dtos.CourseResponseDTO;
+import com.smarthunter.api.dtos.requests.CourseRequestDTO;
+import com.smarthunter.api.dtos.responses.CourseResponseDTO;
 import com.smarthunter.api.resources.docs.CourseResourceDocs;
 import com.smarthunter.api.services.impl.CourseService;
 import lombok.RequiredArgsConstructor;

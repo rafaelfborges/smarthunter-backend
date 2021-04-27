@@ -1,7 +1,7 @@
 package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.smarthunter.api.dtos.CourseResponseDTO;
+import com.smarthunter.api.dtos.responses.CourseResponseDTO;
 import com.smarthunter.api.util.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -64,7 +64,7 @@ public class Course implements Convertible<CourseResponseDTO> {
     private List<Lesson> lessons = new ArrayList<>();
 
     @Override
-    public CourseResponseDTO convertResponse() {
+    public CourseResponseDTO convertToDTO() {
         return new CourseResponseDTO(this);
     }
 }
