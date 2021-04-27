@@ -3,6 +3,7 @@ package com.smarthunter.api.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smarthunter.api.dtos.StudentResponseDTO;
 import com.smarthunter.api.util.Convertible;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,17 +30,21 @@ public class Student implements Convertible<StudentResponseDTO> {
     private Long id;
 
     @NotBlank
+    @ApiModelProperty(required = true,example = "Student name")
     private String name;
 
     @NotBlank
+    @ApiModelProperty(required = true,example = "Student e-mail")
     private String email;
 
     @NotBlank
+    @ApiModelProperty(required = true,example = "Student password")
     private String password;
 
     @CreationTimestamp
     @Column(name = "register_date")
     @JsonFormat(pattern = "dd-MM-yyyy")
+    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
     private LocalDate registerDate;
 
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)

@@ -3,6 +3,7 @@ package com.smarthunter.api.resources;
 import com.smarthunter.api.dtos.StudentRequestDTO;
 import com.smarthunter.api.dtos.StudentResponseDTO;
 import com.smarthunter.api.entities.EnrolledCourse;
+import com.smarthunter.api.resources.docs.StudentResourceDocs;
 import com.smarthunter.api.services.impl.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,9 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("api/students")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class StudentResource {
+public class StudentResource implements StudentResourceDocs {
 
     private final StudentService studentService;
 
