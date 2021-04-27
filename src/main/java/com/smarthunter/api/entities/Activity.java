@@ -1,5 +1,6 @@
 package com.smarthunter.api.entities;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,8 +23,10 @@ public class Activity {
     private Long id;
 
     @NotBlank
+    @ApiModelProperty(required = true,example = "Activity title",dataType = "string")
     private String title;
 
     @NotBlank
+    @ApiModelProperty(required = true,example = "http:video/activity")
     private String urlVideo;
 }

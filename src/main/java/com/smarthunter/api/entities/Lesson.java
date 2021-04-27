@@ -1,5 +1,6 @@
 package com.smarthunter.api.entities;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,9 +25,11 @@ public class Lesson {
     private Long id;
 
     @NotBlank
+    @ApiModelProperty(required = true,example = "lesson name")
     private String name;
 
     @NotBlank
+    @ApiModelProperty(required = true, example = "description about lesson")
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
