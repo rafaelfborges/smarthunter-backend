@@ -1,4 +1,4 @@
-package com.smarthunter.api.dtos;
+package com.smarthunter.api.dtos.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smarthunter.api.entities.Course;

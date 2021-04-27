@@ -1,4 +1,4 @@
-package com.smarthunter.api.dtos;
+package com.smarthunter.api.dtos.requests;
 
 import lombok.Getter;
 import lombok.Setter;
