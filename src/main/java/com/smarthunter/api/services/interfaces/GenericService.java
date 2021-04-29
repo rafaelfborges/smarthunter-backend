@@ -1,7 +1,7 @@
 package com.smarthunter.api.services.interfaces;
 
 import com.smarthunter.api.exceptions.ResourceNotFoundException;
-import com.smarthunter.api.util.Convertible;
+import com.smarthunter.api.utils.Convertible;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
 

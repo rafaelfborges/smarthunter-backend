@@ -14,18 +14,24 @@ import java.util.List;
 @Setter
 public class CourseResponseDTO {
     private Long id;
-    @ApiModelProperty(required = true,example = "Course name")
+
+    @ApiModelProperty(required = true, example = "Course name")
     private String name;
-    @ApiModelProperty(required = true,example = "1",dataType = "integer")
+
+    @ApiModelProperty(required = true, example = "1", dataType = "integer")
     private Long totalHours;
-    @ApiModelProperty(required = true,example = "true", dataType = "boolean")
+
+    @ApiModelProperty(required = true, example = "true", dataType = "boolean")
     private Boolean isActive;
+
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
+    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate registerDate;
+
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
+    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate expirationDate;
+
     @ApiModelProperty(dataType = "List")
     private List<Lesson> lessons;
 

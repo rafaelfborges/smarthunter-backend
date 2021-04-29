@@ -23,10 +23,10 @@ public class Activity {
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(required = true,example = "Activity title",dataType = "string")
+    @ApiModelProperty(required = true, example = "Activity title", dataType = "string")
     private String title;
 
     @NotBlank
-    @ApiModelProperty(required = true,example = "http:video/activity")
+    @ApiModelProperty(required = true, example = "http:video/activity")
     private String urlVideo;
 }

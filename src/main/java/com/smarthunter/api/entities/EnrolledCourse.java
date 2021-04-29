@@ -33,6 +33,6 @@ public class EnrolledCourse {
     @CreationTimestamp
     @Column(name = "register_date")
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
+    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate registerDate;
 }

@@ -39,7 +39,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
                                                                   WebRequest request) {
 
         String userMessage = messageSource.getMessage("message.invalid", null,
-                                                        LocaleContextHolder.getLocale());
+                LocaleContextHolder.getLocale());
         String devMessage = ex.getCause() != null ? ex.getCause().toString() : ex.toString();
 
         List<Error> errors = Collections.singletonList(new Error(userMessage, devMessage));
@@ -60,7 +60,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
                                                                        WebRequest request) {
 
         String userMessage = messageSource.getMessage("resource.not-found", null,
-                                                        LocaleContextHolder.getLocale());
+                LocaleContextHolder.getLocale());
         var devMessage = ex.toString();
 
         List<Error> errors = Collections.singletonList(new Error(userMessage, devMessage));
@@ -71,7 +71,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex,
                                                                         WebRequest request) {
         String userMessage = messageSource.getMessage("resource.operation-not-allowed", null,
-                                                        LocaleContextHolder.getLocale());
+                LocaleContextHolder.getLocale());
         String devMessage = ExceptionUtils.getRootCauseMessage(ex);
 
         List<Error> errors = Collections.singletonList(new Error(userMessage, devMessage));
@@ -82,7 +82,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleInvalidDataAccessApiUsageException(InvalidDataAccessApiUsageException ex,
                                                                            WebRequest request) {
         String userMessage = messageSource.getMessage("resource.null-property-reference", null,
-                                                        LocaleContextHolder.getLocale());
+                LocaleContextHolder.getLocale());
         String devMessage = ExceptionUtils.getRootCauseMessage(ex);
 
         List<Error> errors = Collections.singletonList(new Error(userMessage, devMessage));

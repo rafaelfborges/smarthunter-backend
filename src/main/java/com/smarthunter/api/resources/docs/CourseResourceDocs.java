@@ -19,28 +19,28 @@ public interface CourseResourceDocs {
     })
     ResponseEntity<List<CourseResponseDTO>> findAll();
 
-    @ApiOperation(value = "Find a course by id",response = CourseResponseDTO.class)
+    @ApiOperation(value = "Find a course by id", response = CourseResponseDTO.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "course found successfully"),
             @ApiResponse(code = 401, message = "not authorized"),
             @ApiResponse(code = 404, message = "course not found")
     })
-    CourseResponseDTO findById(@ApiParam(value = "Course id",example = "0")  Long id);
+    CourseResponseDTO findById(@ApiParam(value = "Course id", example = "0") Long id);
 
 
-    @ApiOperation(value = "Create new Course",response = CourseResponseDTO.class)
+    @ApiOperation(value = "Create new Course", response = CourseResponseDTO.class)
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "course created successfully"),
             @ApiResponse(code = 401, message = "not authorized")
     })
     CourseResponseDTO create(CourseRequestDTO course);
 
-    @ApiOperation(value = "updates an existing course",response = CourseResponseDTO.class)
+    @ApiOperation(value = "updates an existing course", response = CourseResponseDTO.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "course updated successfully"),
             @ApiResponse(code = 401, message = "not authorized")
     })
-    CourseResponseDTO update(@ApiParam(value = "Course id",example = "0") Long id, CourseRequestDTO course);
+    CourseResponseDTO update(@ApiParam(value = "Course id", example = "0") Long id, CourseRequestDTO course);
 
 
     @ApiOperation(value = "Remove a existing course")
@@ -48,5 +48,5 @@ public interface CourseResourceDocs {
             @ApiResponse(code = 200, message = "course removed successfully"),
             @ApiResponse(code = 401, message = "not authorized")
     })
-    void remove(@ApiParam(value = "Course id",example = "0") Long id);
+    void remove(@ApiParam(value = "Course id", example = "0") Long id);
 }

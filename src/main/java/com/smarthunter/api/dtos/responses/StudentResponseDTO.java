@@ -16,14 +16,15 @@ import java.util.List;
 public class StudentResponseDTO {
 
     private Long id;
-    @ApiModelProperty(required = true,example = "Student name")
+
+    @ApiModelProperty(required = true, example = "Student name")
     private String name;
 
-    @ApiModelProperty(required = true,example = "Student e-mail")
+    @ApiModelProperty(required = true, example = "Student e-mail")
     private String email;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
+    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate registerDate;
 
     @ApiModelProperty(dataType = "List")

@@ -1,4 +1,4 @@
-package com.smarthunter.api.util;
+package com.smarthunter.api.utils;
 
 public interface Convertible<T> {
     T convert();

@@ -3,7 +3,7 @@ package com.smarthunter.api.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smarthunter.api.dtos.requests.CourseRequestDTO;
 import com.smarthunter.api.dtos.responses.CourseResponseDTO;
-import com.smarthunter.api.util.Convertible;
+import com.smarthunter.api.utils.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;

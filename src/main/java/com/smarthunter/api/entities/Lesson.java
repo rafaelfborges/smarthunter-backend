@@ -25,7 +25,7 @@ public class Lesson {
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(required = true,example = "lesson name")
+    @ApiModelProperty(required = true, example = "lesson name")
     private String name;
 
     @NotBlank

@@ -46,7 +46,7 @@ public class StudentResource implements StudentResourceDocs {
         return studentService.updateById(id, student);
     }
 
-    @PutMapping("/{id}/enrolled_courses/new")
+    @PutMapping("/{id}/enrolled_courses")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public StudentResponseDTO newEnrolledCourse(@PathVariable Long id, @Valid @RequestBody EnrolledCourse enrolledCourse) {

@@ -24,12 +24,13 @@ import java.util.List;
 public class SwaggerConfig implements WebMvcConfigurer {
     @Value("${project.version}")
     private String version;
+
     @Bean
-    public Docket api(){
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                //para mudar o escaneamento do swager, remover/mudar o base package abaixo
+                //para mudar o escaneamento do swagger, remover/mudar o base package abaixo
                 .apis(RequestHandlerSelectors.basePackage("com.smarthunter.api.resources"))
                 .paths(PathSelectors.any())
                 .build()
@@ -37,29 +38,34 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .securitySchemes(Lists.newArrayList(apiKey()))
                 .securityContexts(Lists.newArrayList(securityContext()));
     }
+
     @Bean
-    public SecurityContext securityContext(){
+    public SecurityContext securityContext() {
         return SecurityContext.builder()
-                .securityReferences(defaulAuth())
+                .securityReferences(defaultAuth())
                 .forPaths(PathSelectors.any())
                 .build();
     }
-    private List<SecurityReference> defaulAuth(){
-        AuthorizationScope authorizationScope = new AuthorizationScope("global","accessEverything");
-        AuthorizationScope [] authorizationScopes = new AuthorizationScope[1];
+
+    private List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
         return Lists.newArrayList(new SecurityReference("JWT", authorizationScopes));
     }
-    private ApiKey apiKey(){
+
+    private ApiKey apiKey() {
         return new ApiKey("JWT", HttpHeaders.AUTHORIZATION, ApiKeyVehicle.HEADER.getValue());
     }
-    private ApiInfo apiInfo(){
-        return new ApiInfo("Back end Smart hunter",
-                "Api back end",version,"", new Contact("","www.smarthunter.com",""),
+
+    private ApiInfo apiInfo() {
+        return new ApiInfo("Back-end SmartHunter",
+                "Api back-end", version, "", new Contact("SmartHunter", "www.smarthunter.com", "contact@smarthunter.com"),
                 "License of API", "API license URL", Collections.emptyList());
     }
+
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
 
