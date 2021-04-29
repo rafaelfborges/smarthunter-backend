@@ -15,14 +15,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class StudentService implements GenericService<Long, Student, StudentResponseDTO, StudentRequestDTO> {
+public class StudentService implements GenericService<Student, StudentResponseDTO, StudentRequestDTO, Long> {
 
     private final StudentRepository studentRepository;
-
-    @Override
-    public Student getNewInstance() {
-        return new Student();
-    }
 
     @Override
     public JpaRepository<Student, Long> getRepository() {
@@ -32,6 +27,6 @@ public class StudentService implements GenericService<Long, Student, StudentResp
     public StudentResponseDTO newEnrolledCourse(Long id, EnrolledCourse enrolledCourse) {
         var student = studentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         student.newEnrolledCourse(enrolledCourse);
-        return studentRepository.save(student).convertToDTO();
+        return studentRepository.save(student).convert();
     }
 }

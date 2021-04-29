@@ -1,7 +1,9 @@
 package com.smarthunter.api.dtos.requests;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.smarthunter.api.entities.Course;
 import com.smarthunter.api.entities.Lesson;
+import com.smarthunter.api.util.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,32 +13,33 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.util.List;
-//org.joda.time.LocalDate;
+
 @Getter
 @Setter
-public class CourseRequestDTO {
+public class CourseRequestDTO implements Convertible<Course> {
 
     @NotBlank
-    @ApiModelProperty(required = true,example = "Course name")
+    @ApiModelProperty(required = true, example = "Course name")
     private String name;
 
     @Positive
-    @ApiModelProperty(required = true,example = "0",dataType = "integer")
+    @ApiModelProperty(required = true, example = "0", dataType = "integer")
     private Long totalHours;
 
     @NotNull
-    @ApiModelProperty(required = true,example = "true", dataType = "boolean")
+    @ApiModelProperty(required = true, example = "true", dataType = "boolean")
     private Boolean isActive;
-
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
-    private LocalDate registerDate;
 
     @NotNull
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
+    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate expirationDate;
 
     @ApiModelProperty(dataType = "List")
     private List<Lesson> lessons;
+
+    @Override
+    public Course convert() {
+        return new Course(this);
+    }
 }

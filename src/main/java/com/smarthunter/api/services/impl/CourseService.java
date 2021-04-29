@@ -13,14 +13,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CourseService implements GenericService<Long, Course, CourseResponseDTO, CourseRequestDTO> {
+public class CourseService implements GenericService<Course, CourseResponseDTO, CourseRequestDTO, Long> {
 
     private final CourseRepository courseRepository;
-
-    @Override
-    public Course getNewInstance() {
-        return new Course();
-    }
 
     @Override
     public JpaRepository<Course, Long> getRepository() {

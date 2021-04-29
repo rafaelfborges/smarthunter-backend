@@ -8,32 +8,29 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public interface GenericService<ID, T extends Convertible<ResponseDTO>, ResponseDTO, RequestDTO> {
-
-    T getNewInstance();
+public interface GenericService<T extends Convertible<Response>, Response, Request extends Convertible<T>, ID> {
 
     JpaRepository<T, ID> getRepository();
 
-    default ResponseDTO save(RequestDTO request) {
-        var result = getNewInstance();
-        BeanUtils.copyProperties(request, result);
-        return getRepository().save(result).convertToDTO();
+    default Response save(Request request) {
+        var result = request.convert();
+        return getRepository().save(result).convert();
     }
 
-    default List<ResponseDTO> findAll() {
+    default List<Response> findAll() {
         var list = getRepository().findAll();
-        return list.stream().map(Convertible::convertToDTO).collect(Collectors.toList());
+        return list.stream().map(Convertible::convert).collect(Collectors.toList());
     }
 
-    default ResponseDTO findById(ID id) {
+    default Response findById(ID id) {
         var result = getRepository().findById(id).orElseThrow(ResourceNotFoundException::new);
-        return result.convertToDTO();
+        return result.convert();
     }
 
-    default ResponseDTO updateById(ID id, RequestDTO request) {
+    default Response updateById(ID id, Request request) {
         var result = getRepository().findById(id).orElseThrow(ResourceNotFoundException::new);
         BeanUtils.copyProperties(request, result);
-        return getRepository().save(result).convertToDTO();
+        return getRepository().save(result).convert();
     }
 
     default void deleteById(ID id) {

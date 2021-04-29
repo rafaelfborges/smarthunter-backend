@@ -1,6 +1,7 @@
 package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.smarthunter.api.dtos.requests.CourseRequestDTO;
 import com.smarthunter.api.dtos.responses.CourseResponseDTO;
 import com.smarthunter.api.util.Convertible;
 import io.swagger.annotations.ApiModelProperty;
@@ -32,27 +33,27 @@ public class Course implements Convertible<CourseResponseDTO> {
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(required = true,example = "Course name")
+    @ApiModelProperty(required = true, example = "Course name")
     private String name;
 
     @Positive
-    @ApiModelProperty(required = true,example = "0",dataType = "integer")
+    @ApiModelProperty(required = true, example = "0", dataType = "integer")
     private Long totalHours;
 
     @NotNull
-    @ApiModelProperty(required = true,example = "true", dataType = "boolean")
+    @ApiModelProperty(required = true, example = "true", dataType = "boolean")
     private Boolean isActive;
 
     @CreationTimestamp
     @Column(name = "register_date")
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
+    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate registerDate;
 
     @NotNull
     @Column(name = "expiration_date")
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true,example = "31-12-0000",dataType = "date-time")
+    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate expirationDate;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -63,8 +64,16 @@ public class Course implements Convertible<CourseResponseDTO> {
     )
     private List<Lesson> lessons = new ArrayList<>();
 
+    public Course(CourseRequestDTO request) {
+        this.name = request.getName();
+        this.totalHours = request.getTotalHours();
+        this.isActive = request.getIsActive();
+        this.expirationDate = request.getExpirationDate();
+        this.lessons = request.getLessons();
+    }
+
     @Override
-    public CourseResponseDTO convertToDTO() {
+    public CourseResponseDTO convert() {
         return new CourseResponseDTO(this);
     }
 }

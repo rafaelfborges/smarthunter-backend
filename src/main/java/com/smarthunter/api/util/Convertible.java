@@ -1,5 +1,5 @@
 package com.smarthunter.api.util;
 
 public interface Convertible<T> {
-    T convertToDTO();
+    T convert();
 }
