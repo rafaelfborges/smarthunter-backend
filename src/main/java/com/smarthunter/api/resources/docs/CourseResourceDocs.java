@@ -3,9 +3,9 @@ package com.smarthunter.api.resources.docs;
 import com.smarthunter.api.dtos.requests.CourseRequestDTO;
 import com.smarthunter.api.dtos.responses.CourseResponseDTO;
 import io.swagger.annotations.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-
-import java.util.List;
 
 @Api(tags = "Courses")
 public interface CourseResourceDocs {
@@ -17,7 +17,7 @@ public interface CourseResourceDocs {
             @ApiResponse(code = 401, message = "not authorized"),
             @ApiResponse(code = 404, message = "courses not found")
     })
-    ResponseEntity<List<CourseResponseDTO>> findAll();
+    ResponseEntity<Page<CourseResponseDTO>> findAll(Pageable pageable);
 
     @ApiOperation(value = "Find a course by id", response = CourseResponseDTO.class)
     @ApiResponses(value = {

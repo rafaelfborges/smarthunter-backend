@@ -6,12 +6,13 @@ import com.smarthunter.api.resources.docs.CourseResourceDocs;
 import com.smarthunter.api.services.impl.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/courses")
@@ -21,8 +22,8 @@ public class CourseResource implements CourseResourceDocs {
     private final CourseService courseService;
 
     @GetMapping
-    public ResponseEntity<List<CourseResponseDTO>> findAll() {
-        return ResponseEntity.ok(courseService.findAll());
+    public ResponseEntity<Page<CourseResponseDTO>> findAll(Pageable pageable) {
+        return ResponseEntity.ok(courseService.findAll(pageable));
     }
 
     @GetMapping("/{id}")

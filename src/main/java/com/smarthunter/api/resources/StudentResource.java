@@ -7,12 +7,13 @@ import com.smarthunter.api.resources.docs.StudentResourceDocs;
 import com.smarthunter.api.services.impl.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/students")
@@ -22,8 +23,8 @@ public class StudentResource implements StudentResourceDocs {
     private final StudentService studentService;
 
     @GetMapping
-    public ResponseEntity<List<StudentResponseDTO>> findAll() {
-        return ResponseEntity.ok(studentService.findAll());
+    public ResponseEntity<Page<StudentResponseDTO>> findAll(Pageable pageable) {
+        return ResponseEntity.ok(studentService.findAll(pageable));
     }
 
     @GetMapping("/{id}")
