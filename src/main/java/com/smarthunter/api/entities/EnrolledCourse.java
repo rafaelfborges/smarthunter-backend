@@ -29,11 +29,9 @@ public class EnrolledCourse implements Convertible<EnrolledCourseResponse> {
     private Long id;
 
     @ManyToOne
-    @JsonIgnoreProperties({"name", "totalHours", "isActive", "registerDate", "expirationDate", "lessons"})
     private Course course;
 
     @ManyToOne
-    @JsonIgnoreProperties({"name", "email", "password", "registerDate", "enrolledCourses"})
     private Student student;
 
     @CreationTimestamp
