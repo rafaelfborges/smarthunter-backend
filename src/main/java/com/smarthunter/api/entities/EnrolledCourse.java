@@ -1,6 +1,10 @@
 package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.smarthunter.api.contracts.requests.EnrolledCourseRequest;
+import com.smarthunter.api.contracts.responses.EnrolledCourseResponse;
+import com.smarthunter.api.utils.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +21,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "enrolled_courses")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class EnrolledCourse {
+public class EnrolledCourse implements Convertible<EnrolledCourseResponse> {
 
     @Id
     @EqualsAndHashCode.Include
@@ -25,9 +29,11 @@ public class EnrolledCourse {
     private Long id;
 
     @ManyToOne
+    @JsonIgnoreProperties({"name", "totalHours", "isActive", "registerDate", "expirationDate", "lessons"})
     private Course course;
 
     @ManyToOne
+    @JsonIgnoreProperties({"name", "email", "password", "registerDate", "enrolledCourses"})
     private Student student;
 
     @CreationTimestamp
@@ -35,4 +41,14 @@ public class EnrolledCourse {
     @JsonFormat(pattern = "dd-MM-yyyy")
     @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate registerDate;
+
+    public EnrolledCourse(EnrolledCourseRequest request) {
+        this.course = request.getCourse();
+        this.student = request.getStudent();
+    }
+
+    @Override
+    public EnrolledCourseResponse convert() {
+        return new EnrolledCourseResponse(this);
+    }
 }
