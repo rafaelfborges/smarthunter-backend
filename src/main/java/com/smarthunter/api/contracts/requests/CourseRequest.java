@@ -1,4 +1,4 @@
-package com.smarthunter.api.dtos.requests;
+package com.smarthunter.api.contracts.requests;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smarthunter.api.entities.Course;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CourseRequestDTO implements Convertible<Course> {
+public class CourseRequest implements Convertible<Course> {
 
     @NotBlank
     @ApiModelProperty(required = true, example = "Course name")

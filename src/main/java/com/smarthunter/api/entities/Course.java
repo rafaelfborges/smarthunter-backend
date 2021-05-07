@@ -1,8 +1,10 @@
 package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.smarthunter.api.dtos.requests.CourseRequestDTO;
-import com.smarthunter.api.dtos.responses.CourseResponseDTO;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.smarthunter.api.contracts.requests.CourseRequest;
+import com.smarthunter.api.contracts.responses.CourseResponse;
 import com.smarthunter.api.utils.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -25,7 +27,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "courses")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Course implements Convertible<CourseResponseDTO> {
+public class Course implements Convertible<CourseResponse> {
 
     @Id
     @EqualsAndHashCode.Include
@@ -64,7 +66,7 @@ public class Course implements Convertible<CourseResponseDTO> {
     )
     private List<Lesson> lessons = new ArrayList<>();
 
-    public Course(CourseRequestDTO request) {
+    public Course(CourseRequest request) {
         this.name = request.getName();
         this.totalHours = request.getTotalHours();
         this.isActive = request.getIsActive();
@@ -73,7 +75,7 @@ public class Course implements Convertible<CourseResponseDTO> {
     }
 
     @Override
-    public CourseResponseDTO convert() {
-        return new CourseResponseDTO(this);
+    public CourseResponse convert() {
+        return new CourseResponse(this);
     }
 }

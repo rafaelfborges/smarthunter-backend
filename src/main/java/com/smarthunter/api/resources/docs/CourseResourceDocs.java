@@ -1,7 +1,7 @@
 package com.smarthunter.api.resources.docs;
 
-import com.smarthunter.api.dtos.requests.CourseRequestDTO;
-import com.smarthunter.api.dtos.responses.CourseResponseDTO;
+import com.smarthunter.api.contracts.requests.CourseRequest;
+import com.smarthunter.api.contracts.responses.CourseResponse;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,30 +17,30 @@ public interface CourseResourceDocs {
             @ApiResponse(code = 401, message = "not authorized"),
             @ApiResponse(code = 404, message = "courses not found")
     })
-    ResponseEntity<Page<CourseResponseDTO>> findAll(Pageable pageable);
+    ResponseEntity<Page<CourseResponse>> findAll(Pageable pageable);
 
-    @ApiOperation(value = "Find a course by id", response = CourseResponseDTO.class)
+    @ApiOperation(value = "Find a course by id", response = CourseResponse.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "course found successfully"),
             @ApiResponse(code = 401, message = "not authorized"),
             @ApiResponse(code = 404, message = "course not found")
     })
-    CourseResponseDTO findById(@ApiParam(value = "Course id", example = "0") Long id);
+    CourseResponse findById(@ApiParam(value = "Course id", example = "0") Long id);
 
 
-    @ApiOperation(value = "Create new Course", response = CourseResponseDTO.class)
+    @ApiOperation(value = "Create new Course", response = CourseResponse.class)
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "course created successfully"),
             @ApiResponse(code = 401, message = "not authorized")
     })
-    CourseResponseDTO create(CourseRequestDTO course);
+    CourseResponse create(CourseRequest course);
 
-    @ApiOperation(value = "updates an existing course", response = CourseResponseDTO.class)
+    @ApiOperation(value = "updates an existing course", response = CourseResponse.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "course updated successfully"),
             @ApiResponse(code = 401, message = "not authorized")
     })
-    CourseResponseDTO update(@ApiParam(value = "Course id", example = "0") Long id, CourseRequestDTO course);
+    CourseResponse update(@ApiParam(value = "Course id", example = "0") Long id, CourseRequest course);
 
 
     @ApiOperation(value = "Remove a existing course")

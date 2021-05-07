@@ -1,4 +1,4 @@
-package com.smarthunter.api.dtos.responses;
+package com.smarthunter.api.contracts.responses;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class StudentResponseDTO {
+public class StudentResponse {
 
     private Long id;
 
@@ -30,7 +30,7 @@ public class StudentResponseDTO {
     @ApiModelProperty(dataType = "List")
     private List<EnrolledCourse> enrolledCourses;
 
-    public StudentResponseDTO(Student entity) {
+    public StudentResponse(Student entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.email = entity.getEmail();

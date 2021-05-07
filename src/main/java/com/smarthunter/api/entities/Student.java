@@ -1,8 +1,8 @@
 package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.smarthunter.api.dtos.requests.StudentRequestDTO;
-import com.smarthunter.api.dtos.responses.StudentResponseDTO;
+import com.smarthunter.api.contracts.requests.StudentRequest;
+import com.smarthunter.api.contracts.responses.StudentResponse;
 import com.smarthunter.api.utils.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "students")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Student implements Convertible<StudentResponseDTO> {
+public class Student implements Convertible<StudentResponse> {
 
     @Id
     @EqualsAndHashCode.Include
@@ -51,18 +51,14 @@ public class Student implements Convertible<StudentResponseDTO> {
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
 
-    public Student(StudentRequestDTO request) {
+    public Student(StudentRequest request) {
         this.name = request.getName();
         this.email = request.getEmail();
         this.password = request.getPassword();
     }
 
-    public void newEnrolledCourse(EnrolledCourse enrolledCourse) {
-        this.enrolledCourses.add(enrolledCourse);
-    }
-
     @Override
-    public StudentResponseDTO convert() {
-        return new StudentResponseDTO(this);
+    public StudentResponse convert() {
+        return new StudentResponse(this);
     }
 }

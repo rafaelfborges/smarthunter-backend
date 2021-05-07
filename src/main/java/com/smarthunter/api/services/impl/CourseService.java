@@ -1,8 +1,8 @@
 package com.smarthunter.api.services.impl;
 
 
-import com.smarthunter.api.dtos.requests.CourseRequestDTO;
-import com.smarthunter.api.dtos.responses.CourseResponseDTO;
+import com.smarthunter.api.contracts.requests.CourseRequest;
+import com.smarthunter.api.contracts.responses.CourseResponse;
 import com.smarthunter.api.entities.Course;
 import com.smarthunter.api.repositories.CourseRepository;
 import com.smarthunter.api.services.interfaces.GenericService;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CourseService implements GenericService<Course, CourseResponseDTO, CourseRequestDTO, Long> {
+public class CourseService implements GenericService<Course, CourseResponse, CourseRequest, Long> {
 
     private final CourseRepository courseRepository;
 

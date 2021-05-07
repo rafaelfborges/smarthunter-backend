@@ -1,7 +1,7 @@
 package com.smarthunter.api.resources;
 
-import com.smarthunter.api.dtos.requests.CourseRequestDTO;
-import com.smarthunter.api.dtos.responses.CourseResponseDTO;
+import com.smarthunter.api.contracts.requests.CourseRequest;
+import com.smarthunter.api.contracts.responses.CourseResponse;
 import com.smarthunter.api.resources.docs.CourseResourceDocs;
 import com.smarthunter.api.services.impl.CourseService;
 import lombok.RequiredArgsConstructor;
@@ -22,13 +22,13 @@ public class CourseResource implements CourseResourceDocs {
     private final CourseService courseService;
 
     @GetMapping
-    public ResponseEntity<Page<CourseResponseDTO>> findAll(Pageable pageable) {
+    public ResponseEntity<Page<CourseResponse>> findAll(Pageable pageable) {
         return ResponseEntity.ok(courseService.findAll(pageable));
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CourseResponseDTO findById(@PathVariable Long id) {
+    public CourseResponse findById(@PathVariable Long id) {
         return courseService.findById(id);
     }
 
@@ -36,14 +36,14 @@ public class CourseResource implements CourseResourceDocs {
     @PostMapping
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public CourseResponseDTO create(@Valid @RequestBody CourseRequestDTO course) {
+    public CourseResponse create(@Valid @RequestBody CourseRequest course) {
         return courseService.save(course);
     }
 
     @PutMapping("/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public CourseResponseDTO update(@PathVariable Long id, @Valid @RequestBody CourseRequestDTO course) {
+    public CourseResponse update(@PathVariable Long id, @Valid @RequestBody CourseRequest course) {
         return courseService.updateById(id, course);
     }
 

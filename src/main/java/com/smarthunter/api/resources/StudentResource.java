@@ -1,8 +1,9 @@
 package com.smarthunter.api.resources;
 
-import com.smarthunter.api.dtos.requests.StudentRequestDTO;
-import com.smarthunter.api.dtos.responses.StudentResponseDTO;
-import com.smarthunter.api.entities.EnrolledCourse;
+import com.smarthunter.api.contracts.requests.EnrolledCourseRequest;
+import com.smarthunter.api.contracts.requests.StudentRequest;
+import com.smarthunter.api.contracts.responses.StudentResponse;
+
 import com.smarthunter.api.resources.docs.StudentResourceDocs;
 import com.smarthunter.api.services.impl.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -23,35 +24,28 @@ public class StudentResource implements StudentResourceDocs {
     private final StudentService studentService;
 
     @GetMapping
-    public ResponseEntity<Page<StudentResponseDTO>> findAll(Pageable pageable) {
+    public ResponseEntity<Page<StudentResponse>> findAll(Pageable pageable) {
         return ResponseEntity.ok(studentService.findAll(pageable));
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public StudentResponseDTO findById(@PathVariable Long id) {
+    public StudentResponse findById(@PathVariable Long id) {
         return studentService.findById(id);
     }
 
     @PostMapping
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public StudentResponseDTO create(@Valid @RequestBody StudentRequestDTO student) {
+    public StudentResponse create(@Valid @RequestBody StudentRequest student) {
         return studentService.save(student);
     }
 
     @PutMapping("/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public StudentResponseDTO update(@PathVariable Long id, @Valid @RequestBody StudentRequestDTO student) {
+    public StudentResponse update(@PathVariable Long id, @Valid @RequestBody StudentRequest student) {
         return studentService.updateById(id, student);
-    }
-
-    @PutMapping("/{id}/enrolled_courses")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public StudentResponseDTO newEnrolledCourse(@PathVariable Long id, @Valid @RequestBody EnrolledCourse enrolledCourse) {
-        return studentService.newEnrolledCourse(id, enrolledCourse);
     }
 
     @DeleteMapping("/{id}")

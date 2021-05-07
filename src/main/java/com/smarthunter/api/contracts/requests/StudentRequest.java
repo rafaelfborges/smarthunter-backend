@@ -1,4 +1,4 @@
-package com.smarthunter.api.dtos.requests;
+package com.smarthunter.api.contracts.requests;
 
 import com.smarthunter.api.entities.Student;
 import com.smarthunter.api.utils.Convertible;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-public class StudentRequestDTO implements Convertible<Student> {
+public class StudentRequest implements Convertible<Student> {
 
     @NotBlank
     @ApiModelProperty(required = true, example = "Student name")
