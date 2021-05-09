@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/enrolled_courses")
+@RequestMapping("/api/enrolled_courses")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EnrolledCourseResource implements EnrolledCourseResourceDocs {
 

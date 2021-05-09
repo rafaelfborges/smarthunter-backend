@@ -10,11 +10,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -23,7 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "students")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Student implements Convertible<StudentResponse> {
+public class Student implements Convertible<StudentResponse>, UserDetails {
 
     @Id
     @EqualsAndHashCode.Include
@@ -60,5 +63,35 @@ public class Student implements Convertible<StudentResponse> {
     @Override
     public StudentResponse convert() {
         return new StudentResponse(this);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
