@@ -13,26 +13,28 @@ import java.util.List;
 @Getter
 @Setter
 public class CourseResponse {
+
+    @ApiModelProperty(value = "Course Id", example = "1", dataType = "integer")
     private Long id;
 
-    @ApiModelProperty(required = true, example = "Course name")
+    @ApiModelProperty(value = "Course Name", example = "Java Course", position = 1)
     private String name;
 
-    @ApiModelProperty(required = true, example = "1", dataType = "integer")
+    @ApiModelProperty(value = "Course Total Hours", example = "1", dataType = "integer", position = 2)
     private Long totalHours;
 
-    @ApiModelProperty(required = true, example = "true", dataType = "boolean")
+    @ApiModelProperty(value = "Course Status", example = "true", dataType = "boolean", position = 3)
     private Boolean isActive;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
+    @ApiModelProperty(value = "Course Register Date", example = "31-12-0000", dataType = "date-time", position = 4)
     private LocalDate registerDate;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
+    @ApiModelProperty(value = "Course Expiration Date", example = "31-12-0000", dataType = "date-time", position = 5)
     private LocalDate expirationDate;
 
-    @ApiModelProperty(dataType = "List")
+    @ApiModelProperty(value = "Course Lessons", dataType = "List", position = 6)
     private List<Lesson> lessons;
 
     public CourseResponse(Course entity) {

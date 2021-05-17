@@ -19,23 +19,25 @@ import java.util.List;
 public class CourseRequest implements Convertible<Course> {
 
     @NotBlank
-    @ApiModelProperty(required = true, example = "Course name")
+    @ApiModelProperty(value = "Course Name", example = "Java Course")
     private String name;
 
     @Positive
-    @ApiModelProperty(required = true, example = "0", dataType = "integer")
+    @ApiModelProperty(value = "Course Total Hours", required = true, example = "1", dataType = "integer", position = 1)
     private Long totalHours;
 
     @NotNull
-    @ApiModelProperty(required = true, example = "true", dataType = "boolean")
+    @ApiModelProperty(value = "Course Status", required = true, example = "true", dataType = "boolean", position = 2)
     private Boolean isActive;
 
     @NotNull
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
+    @ApiModelProperty(
+            value = "Course Expiration", required = true, example = "31-12-0000", dataType = "date-time", position = 3
+    )
     private LocalDate expirationDate;
 
-    @ApiModelProperty(dataType = "List")
+    @ApiModelProperty(value = "Course Lessons", dataType = "List", position = 4)
     private List<Lesson> lessons;
 
     @Override

@@ -1,11 +1,10 @@
 package com.smarthunter.api.contracts.requests;
 
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.smarthunter.api.entities.Course;
+import com.smarthunter.api.contracts.summaries.CourseSummary;
+import com.smarthunter.api.contracts.summaries.UserSummary;
 import com.smarthunter.api.entities.EnrolledCourse;
-import com.smarthunter.api.entities.Student;
 import com.smarthunter.api.utils.Convertible;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,12 +15,12 @@ import javax.validation.constraints.NotNull;
 public class EnrolledCourseRequest implements Convertible<EnrolledCourse> {
 
     @NotNull
-    @JsonIgnoreProperties({"name", "totalHours", "isActive", "registerDate", "expirationDate", "lessons"})
-    private Course course;
+    @ApiModelProperty(value = "Course ID", required = true)
+    private CourseSummary course;
 
     @NotNull
-    @JsonIgnoreProperties({"name", "email", "password", "registerDate", "enrolledCourses"})
-    private Student student;
+    @ApiModelProperty(value = "User ID", required = true, position = 1)
+    private UserSummary user;
 
     @Override
     public EnrolledCourse convert() {
