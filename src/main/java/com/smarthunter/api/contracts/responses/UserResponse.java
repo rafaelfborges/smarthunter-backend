@@ -3,8 +3,7 @@ package com.smarthunter.api.contracts.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smarthunter.api.entities.EnrolledCourse;
-import com.smarthunter.api.entities.Student;
-import com.smarthunter.api.utils.Convertible;
+import com.smarthunter.api.entities.User;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,24 +14,27 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class StudentResponse {
+public class UserResponse {
 
+    @ApiModelProperty(value = "User ID", example = "1", dataType = "integer")
     private Long id;
 
-    @ApiModelProperty(required = true, example = "Student name")
+    @ApiModelProperty(value = "User Name", example = "John Doe", position = 1)
     private String name;
 
-    @ApiModelProperty(required = true, example = "Student e-mail")
+    @ApiModelProperty(value = "User E-mail", example = "johndoe@example.com", position = 2)
     private String email;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
+    @ApiModelProperty(
+            value = "User Registered Date", example = "31-12-0000", dataType = "date-time", position = 3
+    )
     private LocalDate registerDate;
 
-    @ApiModelProperty(dataType = "List")
+    @ApiModelProperty(value = "User Enrolled Courses", dataType = "List", position = 4)
     private List<EnrolledCourseResponse> enrolledCourses;
 
-    public StudentResponse(Student entity) {
+    public UserResponse(User entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.email = entity.getEmail();

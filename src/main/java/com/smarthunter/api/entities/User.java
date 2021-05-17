@@ -1,32 +1,30 @@
 package com.smarthunter.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.smarthunter.api.contracts.requests.StudentRequest;
-import com.smarthunter.api.contracts.responses.StudentResponse;
+import com.smarthunter.api.contracts.requests.UserRequest;
+import com.smarthunter.api.contracts.responses.UserResponse;
 import com.smarthunter.api.utils.Convertible;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "students")
+@Table(name = "users")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Student implements Convertible<StudentResponse>, UserDetails {
+public class User implements Serializable, UserDetails, Convertible<UserResponse> {
 
     @Id
     @EqualsAndHashCode.Include
@@ -34,35 +32,31 @@ public class Student implements Convertible<StudentResponse>, UserDetails {
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(required = true, example = "Student name")
     private String name;
 
     @NotBlank
-    @ApiModelProperty(required = true, example = "Student e-mail")
     private String email;
 
     @NotBlank
-    @ApiModelProperty(required = true, example = "Student password")
     private String password;
 
     @CreationTimestamp
     @Column(name = "register_date")
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(required = true, example = "31-12-0000", dataType = "date-time")
     private LocalDate registerDate;
 
-    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
-    private List<EnrolledCourse> enrolledCourses = new ArrayList<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<EnrolledCourse> enrolledCourses = new HashSet<>();
 
-    public Student(StudentRequest request) {
+    public User(UserRequest request) {
         this.name = request.getName();
         this.email = request.getEmail();
         this.password = request.getPassword();
     }
 
     @Override
-    public StudentResponse convert() {
-        return new StudentResponse(this);
+    public UserResponse convert() {
+        return new UserResponse(this);
     }
 
     @Override
