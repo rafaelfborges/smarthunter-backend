@@ -1,6 +1,6 @@
-package com.smarthunter.api.config;
+package com.smarthunter.api.configs;
 
-import com.smarthunter.api.services.impl.AuthService;
+import com.smarthunter.api.services.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AuthService authService;
+    private final UserService userService;
     private final String[] allowed = {
             "/v2/api-docs",
             "/swagger-resources",
@@ -26,19 +26,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/configuration/security",
             "/swagger-ui.html",
             "/webjars/**",
-            "/api/students/**"
+            "/api/users/**",
+            "/api/courses/**",
+            "/api/enrolled_courses/**"
     };
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(authService).passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(allowed).permitAll()
-                .antMatchers("/**").authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().csrf().disable();
