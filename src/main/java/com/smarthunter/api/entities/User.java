@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
@@ -24,7 +23,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "users")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class User implements Serializable, UserDetails, Convertible<UserResponse> {
+public class User implements UserDetails, Convertible<UserResponse> {
 
     @Id
     @EqualsAndHashCode.Include
