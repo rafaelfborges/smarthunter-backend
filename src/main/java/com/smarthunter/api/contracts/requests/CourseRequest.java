@@ -2,7 +2,6 @@ package com.smarthunter.api.contracts.requests;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.smarthunter.api.entities.Course;
-import com.smarthunter.api.entities.Lesson;
 import com.smarthunter.api.utils.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -12,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -36,9 +34,6 @@ public class CourseRequest implements Convertible<Course> {
             value = "Course Expiration", required = true, example = "31-12-0000", dataType = "date-time", position = 3
     )
     private LocalDate expirationDate;
-
-    @ApiModelProperty(value = "Course Lessons", dataType = "List", position = 4)
-    private List<Lesson> lessons;
 
     @Override
     public Course convert() {

@@ -1,6 +1,8 @@
 package com.smarthunter.api.entities;
 
-import io.swagger.annotations.ApiModelProperty;
+import com.smarthunter.api.contracts.requests.ActivityRequest;
+import com.smarthunter.api.contracts.responses.ActivityResponse;
+import com.smarthunter.api.utils.Convertible;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,23 +18,26 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Table(name = "activities")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Activity implements Serializable {
+public class Activity implements Serializable, Convertible<ActivityResponse> {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(value = "Activity Id", example = "1", dataType = "integer")
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(
-            required = true, value = "Activity Title", example = "Java History", dataType = "integer", position = 1
-    )
     private String title;
 
     @NotBlank
-    @ApiModelProperty(
-            required = true, value = "Activity Video URL", example = "https://vimeo.com/23901832", position = 2
-    )
     private String urlVideo;
+
+    public Activity(ActivityRequest request) {
+        this.title = request.getTitle();
+        this.urlVideo = request.getUrlVideo();
+    }
+
+    @Override
+    public ActivityResponse convert() {
+        return new ActivityResponse(this);
+    }
 }

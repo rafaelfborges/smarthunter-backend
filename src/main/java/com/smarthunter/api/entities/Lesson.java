@@ -1,6 +1,8 @@
 package com.smarthunter.api.entities;
 
-import io.swagger.annotations.ApiModelProperty;
+import com.smarthunter.api.contracts.requests.LessonRequest;
+import com.smarthunter.api.contracts.responses.LessonResponse;
+import com.smarthunter.api.utils.Convertible;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,20 +20,17 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "lessons")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Lesson implements Serializable {
+public class Lesson implements Serializable, Convertible<LessonResponse> {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(value = "Lesson Id", example = "1", dataType = "integer")
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(value = "Lesson Name", required = true, example = "Basic concepts", position = 1)
     private String name;
 
     @NotBlank
-    @ApiModelProperty(value = "Lesson Description", required = true, example = "XYZ", position = 2)
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -40,6 +39,15 @@ public class Lesson implements Serializable {
             joinColumns = @JoinColumn(name = "lesson_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id")
     )
-    @ApiModelProperty(value = "Lesson Activities", required = true, dataType = "List", position = 3)
     private List<Activity> activities = new ArrayList<>();
+
+    public Lesson(LessonRequest request) {
+        this.name = request.getName();
+        this.description = request.getDescription();
+    }
+
+    @Override
+    public LessonResponse convert() {
+        return new LessonResponse(this);
+    }
 }
