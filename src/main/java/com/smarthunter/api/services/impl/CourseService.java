@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CourseService implements GenericService<Course, CourseResponse, CourseRequest, Long> {
+public class CourseService implements GenericService<Course, CourseRequest, CourseResponse, Long> {
 
     private final CourseRepository courseRepository;
 

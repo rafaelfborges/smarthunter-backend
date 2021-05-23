@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GenericService<T extends Convertible<Response>, Response, Request extends Convertible<T>, ID> {
+public interface GenericService<T extends Convertible<Response>, Request extends Convertible<T>, Response, ID> {
 
     JpaRepository<T, ID> getRepository();
 

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserService implements UserDetailsService, GenericService<User, UserResponse, UserRequest, Long> {
+public class UserService implements UserDetailsService, GenericService<User, UserRequest, UserResponse, Long> {
 
     private final UserRepository userRepository;
 
