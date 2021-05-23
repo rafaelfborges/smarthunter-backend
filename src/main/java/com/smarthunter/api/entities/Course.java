@@ -62,7 +62,6 @@ public class Course implements Serializable, Convertible<CourseResponse> {
         this.totalHours = request.getTotalHours();
         this.isActive = request.getIsActive();
         this.expirationDate = request.getExpirationDate();
-        this.lessons = request.getLessons();
     }
 
     @Override
