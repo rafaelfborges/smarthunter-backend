@@ -39,6 +39,9 @@ public class Course implements Serializable, Convertible<CourseResponse> {
     @NotNull
     private Boolean isActive;
 
+    @NotNull
+    private String thumbUrl;
+
     @CreationTimestamp
     @Column(name = "register_date")
     @JsonFormat(pattern = "dd-MM-yyyy")
