@@ -2,6 +2,7 @@ package com.smarthunter.api.contracts.responses;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.smarthunter.api.entities.EnrolledCourse;
 import com.smarthunter.api.entities.User;
 import io.swagger.annotations.ApiModelProperty;
@@ -31,6 +32,7 @@ public class UserResponse {
     )
     private LocalDate registerDate;
 
+    @JsonIgnoreProperties({"id", "user"})
     @ApiModelProperty(value = "User Enrolled Courses", dataType = "List", position = 4)
     private List<EnrolledCourseResponse> enrolledCourses;
 
