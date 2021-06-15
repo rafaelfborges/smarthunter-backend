@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,15 +27,23 @@ public class CourseResponse {
     @ApiModelProperty(value = "Course Status", example = "true", dataType = "boolean", position = 3)
     private Boolean isActive;
 
+    @NotNull
+    @ApiModelProperty(value = "Course Description", example = "This is a advanced course...", position = 4)
+    private String description;
+
+    @NotNull
+    @ApiModelProperty(value = "Course Thumbnail", example = "http://images.domain.com/thumbnail-1.jpg", position = 5)
+    private String thumbUrl;
+
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(value = "Course Register Date", example = "31-12-0000", dataType = "date-time", position = 4)
+    @ApiModelProperty(value = "Course Register Date", example = "31-12-0000", dataType = "date-time", position = 6)
     private LocalDate registerDate;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @ApiModelProperty(value = "Course Expiration Date", example = "31-12-0000", dataType = "date-time", position = 5)
+    @ApiModelProperty(value = "Course Expiration Date", example = "31-12-0000", dataType = "date-time", position = 7)
     private LocalDate expirationDate;
 
-    @ApiModelProperty(value = "Course Lessons", dataType = "List", position = 6)
+    @ApiModelProperty(value = "Course Lessons", dataType = "List", position = 8)
     private List<Lesson> lessons;
 
     public CourseResponse(Course entity) {
@@ -42,6 +51,8 @@ public class CourseResponse {
         this.name = entity.getName();
         this.totalHours = entity.getTotalHours();
         this.isActive = entity.getIsActive();
+        this.description = entity.getDescription();
+        this.thumbUrl = entity.getThumbUrl();
         this.registerDate = entity.getRegisterDate();
         this.expirationDate = entity.getExpirationDate();
         this.lessons = entity.getLessons();

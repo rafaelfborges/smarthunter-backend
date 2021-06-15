@@ -31,13 +31,21 @@ public class CourseRequest implements Convertible<Course> {
     private Boolean isActive;
 
     @NotNull
+    @ApiModelProperty(value = "Course Description", required = true, example = "This is a advanced course...", position = 3)
+    private String description;
+
+    @NotNull
+    @ApiModelProperty(value = "Course Thumbnail", required = true, example = "http://images.domain.com/thumbnail-1.jpg", position = 4)
+    private String thumbUrl;
+
+    @NotNull
     @JsonFormat(pattern = "dd-MM-yyyy")
     @ApiModelProperty(
-            value = "Course Expiration", required = true, example = "31-12-0000", dataType = "date-time", position = 3
+            value = "Course Expiration", required = true, example = "31-12-0000", dataType = "date-time", position = 5
     )
     private LocalDate expirationDate;
 
-    @ApiModelProperty(value = "Course Lessons", dataType = "List", position = 4)
+    @ApiModelProperty(value = "Course Lessons", dataType = "List", position = 6)
     private List<Lesson> lessons;
 
     @Override

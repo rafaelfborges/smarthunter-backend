@@ -40,6 +40,9 @@ public class Course implements Serializable, Convertible<CourseResponse> {
     private Boolean isActive;
 
     @NotNull
+    private String description;
+
+    @NotNull
     private String thumbUrl;
 
     @CreationTimestamp
@@ -64,6 +67,8 @@ public class Course implements Serializable, Convertible<CourseResponse> {
         this.name = request.getName();
         this.totalHours = request.getTotalHours();
         this.isActive = request.getIsActive();
+        this.description = request.getDescription();
+        this.thumbUrl = request.getThumbUrl();
         this.expirationDate = request.getExpirationDate();
         this.lessons = request.getLessons();
     }
