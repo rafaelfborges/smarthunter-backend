@@ -32,5 +32,5 @@ jobs:
         app-name: smarthunter-backend-app
         slot-name: Production
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BAED2E8FA92D48D1A71C063248B613BA }}
-        package: ${{ github.workspace }}/target/*.war
+        package: ${{ github.workspace }}/target/*.jar
 
