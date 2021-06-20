@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/configuration/security",
             "/swagger-ui.html",
             "/webjars/**",
-            "/api/login",
+            "/api/login/**",
     };
 
     @Override
@@ -50,13 +50,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        var authenticationByTokenFilter = new AuthenticationByTokenFilter(tokenService, userRepository);
+
         http.authorizeRequests()
                 .antMatchers(allowed).permitAll()
                 .antMatchers(HttpMethod.POST, "/api/users").permitAll() //Register Route
                 .anyRequest().authenticated()
-                .and().csrf().disable()
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(new AuthenticationByTokenFilter(tokenService, userRepository),
-                                        UsernamePasswordAuthenticationFilter.class);
+                .and()
+                .addFilterBefore(authenticationByTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .cors().and().csrf().disable();
     }
 }
