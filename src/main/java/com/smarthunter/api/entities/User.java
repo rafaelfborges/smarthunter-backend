@@ -44,6 +44,9 @@ public class User implements UserDetails, Convertible<UserResponse> {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate registerDate;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Perfil> perfis = new HashSet<>();
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<EnrolledCourse> enrolledCourses = new HashSet<>();
 
@@ -60,7 +63,7 @@ public class User implements UserDetails, Convertible<UserResponse> {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return perfis;
     }
 
     @Override

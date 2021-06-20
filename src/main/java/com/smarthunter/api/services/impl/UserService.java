@@ -28,6 +28,6 @@ public class UserService implements UserDetailsService, GenericService<User, Use
     @Override
     public UserDetails loadUserByUsername(String username) {
         return userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Username not exists"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not exists"));
     }
 }

@@ -35,15 +35,15 @@ public class UserResource implements UserResourceDocs {
     @PostMapping
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse create(@Valid @RequestBody UserRequest student) {
-        return userService.save(student);
+    public UserResponse create(@Valid @RequestBody UserRequest user) {
+        return userService.save(user);
     }
 
     @PutMapping("/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public UserResponse update(@PathVariable Long id, @Valid @RequestBody UserRequest student) {
-        return userService.updateById(id, student);
+    public UserResponse update(@PathVariable Long id, @Valid @RequestBody UserRequest user) {
+        return userService.updateById(id, user);
     }
 
     @DeleteMapping("/{id}")

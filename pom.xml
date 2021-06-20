@@ -99,6 +99,13 @@
             <version>3.4</version>
         </dependency>
 
+        <!-- JSON WebToken -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
         <!-- Flyway
         <dependency>
             <groupId>org.flywaydb</groupId>

@@ -5,6 +5,7 @@ import com.smarthunter.api.utils.Convertible;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.NotBlank;
 
@@ -26,6 +27,7 @@ public class UserRequest implements Convertible<User> {
 
     @Override
     public User convert() {
+        this.password = new BCryptPasswordEncoder().encode(password);
         return new User(this);
     }
 }
