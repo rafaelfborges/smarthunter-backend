@@ -1,6 +1,5 @@
 package com.smarthunter.api.services.interfaces;
 
-import com.smarthunter.api.contracts.requests.UserRequest;
 import com.smarthunter.api.exceptions.ResourceNotFoundException;
 import com.smarthunter.api.utils.Convertible;
 import org.springframework.beans.BeanUtils;
@@ -28,16 +27,8 @@ public interface GenericService<T extends Convertible<Response>, Response, Reque
     }
 
     default Response updateById(ID id, Request request) {
-        String[] ignoreProperties = {
-                "id",
-                "registerDate",
-                "perfis",
-                "enrolledCourses",
-                "lessons"
-        };
-
         var result = getRepository().findById(id).orElseThrow(ResourceNotFoundException::new);
-        BeanUtils.copyProperties(request.convert(), result, ignoreProperties);
+        BeanUtils.copyProperties(request, result);
         return getRepository().save(result).convert();
     }
 

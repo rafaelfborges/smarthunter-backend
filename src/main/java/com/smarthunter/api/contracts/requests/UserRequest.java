@@ -27,7 +27,6 @@ public class UserRequest implements Convertible<User> {
 
     @Override
     public User convert() {
-        this.password = new BCryptPasswordEncoder().encode(password);
         return new User(this);
     }
 }
