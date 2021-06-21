@@ -9,7 +9,9 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -55,6 +57,6 @@ public class CourseResponse {
         this.thumbUrl = entity.getThumbUrl();
         this.registerDate = entity.getRegisterDate();
         this.expirationDate = entity.getExpirationDate();
-        this.lessons = entity.getLessons();
+        this.lessons = new ArrayList<>(entity.getLessons());
     }
 }

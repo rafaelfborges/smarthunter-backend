@@ -14,7 +14,9 @@ import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -61,7 +63,7 @@ public class Course implements Serializable, Convertible<CourseResponse> {
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "lesson_id")
     )
-    private List<Lesson> lessons = new ArrayList<>();
+    private Set<Lesson> lessons = new HashSet<>();
 
     public Course(CourseRequest request) {
         this.name = request.getName();
@@ -70,7 +72,7 @@ public class Course implements Serializable, Convertible<CourseResponse> {
         this.description = request.getDescription();
         this.thumbUrl = request.getThumbUrl();
         this.expirationDate = request.getExpirationDate();
-        this.lessons = request.getLessons();
+        this.lessons = new HashSet<>(request.getLessons());
     }
 
     @Override
