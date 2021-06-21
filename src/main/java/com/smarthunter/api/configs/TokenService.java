@@ -25,8 +25,9 @@ public class TokenService {
         Date expirationDate = new Date(today.getTime() + Long.parseLong(expiration));
 
         return Jwts.builder()
-                .setIssuer("API do Fórum da Alura")
-                .setSubject(loggued.getId().toString())
+                .setIssuer("API do Smarthunter")
+                .setSubject(loggued.getName())
+                .setId(loggued.getId().toString())
                 .setIssuedAt(today)
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS256, secret)
